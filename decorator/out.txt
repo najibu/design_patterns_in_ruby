@@ -1,0 +1,4 @@
+A plain line
+A line with checksum
+with time stamp
+with line number
