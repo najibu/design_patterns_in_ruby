@@ -1,22 +1,14 @@
-class ClassVariableTester
-  @@class_count = 0 
-  def initialize
-    @instance_count = 0
+class IOFactory
+  def initialize(format)
+    @reader_class = self.class.const_get("#{format}Reader")
+      @writer_class = self.class.const_get("#{format}Writer")
   end
 
-  def increment
-    @@class_count += 1 
-    @instance_count += 1
+  def new_reader
+    @reader_class.new 
   end
 
-  def to_s
-    "class_count: #{@@class_count} instance_count: #{@instance_count}"
+  def new_writer
+    @writer_class.new 
   end
 end
-
-c1 = ClassVariableTester.new
-c1.increment
-c1.increment
-puts "c1: #{c1}"
-c2 = ClassVariableTester.new
-puts "c2: #{c2}"
